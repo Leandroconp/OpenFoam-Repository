@@ -1,0 +1,249 @@
+#=======================================================================
+Using Source Code Installation
+
+Installing in Ubuntu 16.04: 
+
+https://openfoamwiki.net/index.php/Installation/Linux/OpenFOAM-3.0.1/Ubuntu
+
+Installing in Ubuntu 18.04:
+
+http://openfoamwiki.net/index.php/Installation/Linux/OpenFOAM-7/Ubuntu/18.04
+
+Installing in Ubuntu 20.20
+
+https://openfoam.org/download/7-ubuntu/
+
+User Guides 
+
+#> ls -A1 $WM_PROJECT_DIR/doc/Guides*/*UserGuide*.pdf
+
+#=======================================================================
+Chapter 2: Describes some exemples to run openFoam
+
+2.1 Lid cavity
+
+#1- Go to cavity direction:
+#
+#> cd $FOAM RUN/tutorials/incompressible/icoFoam/cavity
+#
+#2- Mesh generation
+#
+#inside system directory open blockMeshdict:
+#
+#> cd system
+#> vi blockMeshdict
+#> cd ../
+#
+#Obs: in 3D need to change the size and number of cells.
+#
+#generate the mesh:  
+#
+#> blockMesh
+#
+#3 -Boundary conditions
+#
+#open file p and U inside 0 directory: 
+#
+#> cd 0
+#> vi p
+#
+#Obs: test frontandback type zeroGradient for 3D
+#
+#3 - Viewing the mesh
+#
+#> paraFoam -builtin
+#
+#4 - Running an application
+#
+#> icoFoam
+#
+#5 - Visualization
+#
+#> paraFoam -builtin
+
+
+#=======================================================================
+2.3 Breaking of a dam
+
+#1 - go to interFoam
+#
+#> cd $FOAM RUN/tutorials/multiphase/interFoam/laminar/damBreak
+#
+#2 - Generate the mesh running blockMesh
+#
+#> blockMesh
+#
+#3 - Copy alpha properties
+#
+#> cp 0/alpha.water.orig 0/alpha.water
+#
+#
+#4- Specify a non-uniform initial condition for the phase fraction running setFields:
+#
+#> setFields
+#
+#4- Run the simulation
+#
+#> interFoam | tee log 
+#5 - Paraview Post processing
+#> paraFoam - builtin
+#OBS: No paraview 5.4.1 se der erro na visualização alterar o "Label Size" para "64-bit" antes de aplicar.
+# 
+#Para transformar em 3D:
+#
+#1 - Editar arquivo blockMeshDict
+#
+#> aumentar o tamanho em z e o número de pontos dos block na direção z
+#
+#2 - Editar arquivo alpha.water.org 
+#
+#
+#> defaultFaces
+#    {
+#        type            zeroGradient; //type            empty;
+#    }
+#OBS: Não foi mais necessário, Dúvida???
+#
+#3 - copiar alpha.water.org para alpha.water
+#
+#> cp 0/alpha.water.org 0/alpha.water
+#
+#4 - Gerar malha
+#
+#> blockMesh
+#
+#5 - specify a non-uniform initial condition for the phase fraction running setFields:
+#
+#> setField
+#
+#6- Run the simulation
+#
+#> interFoam | tee log
+
+
+#=======================================================================
+A. Hydraulic Jump (Joao Pedro code)
+
+#1 - go to folder code
+#
+#> cd ~/OpenFOAM/leandro-7/run/codeJoao_openfoam/
+#
+#2 - Generate the mesh running blockMesh
+#
+#> blockMesh
+#
+#3 - Copy alpha properties
+#
+#> cp 0/alpha.water.orig 0/alpha.water
+#
+#
+#4- Specify a non-uniform initial condition for the phase fraction running setFields:
+#
+#> setFields
+#
+#4- Run the simulation
+#
+#> interFoam | tee log 
+#OBS: Se der erro no fvSolution modificar linha 35 de pcorr para "pcorr.*"
+ 
+#=======================================================================
+Chapter 3
+
+Compile separate version of pisoFOAM
+
+#copying the pisoFoam source code to a local directory, e.g. $FOAM RUN;
+#> cd $FOAM RUN
+#> cp -r $FOAM SOLVERS/incompressible/pisoFoam .
+#> cd pisoFoam
+#
+#editing the Make/files file as follows;
+#
+#pisoFoam.C
+#EXE = $(FOAM_USER_APPBIN)/pisoFoam
+#
+#executing wmake.
+#> wmake
+
+
+
+#=======================================================================
+Install groovyBC
+
+#http://openfoamwiki.net/index.php/Contrib_groovyBC
+#
+#download : hg clone http://hg.code.sf.net/p/openfoam-extend/swak4Foam swak4Foam
+#
+#OBS: No item 2.1 a compilação deve ser feita iniciando o openfoam no docker
+#
+#> ./sudo ./startOpenFoam+
+#
+#Vai até a pasta groovyBC: 
+#
+#> wmake libso
+#
+#OBS: a versão do bison 3.0 não funciona???? 
+
+
+#=======================================================================
+Run parshall code
+
+#1- Generate mesh in salome
+#2- convert .unv to boundaries and faces readble by OPENFOAM  
+#> ideasUnvToFoam Mesh_quadr.unv
+#3- SetField
+#> SetFields
+#Run the simulation
+#
+#> interFoam | tee log
+
+#=======================================================================
+Salome OpenFOAM Tutorial - CAD model to Solution Complete - Calum Douglas
+
+link: https://www.youtube.com/watch?v=1zQbU-E4k1U
+
+#To run OpenFOAM after generate mesh with Salome (UNV_tutorial.unv)
+#1- Na pasta da simulação converter o unv para o formato OpenFOAM
+#> ideasUnvToFoam UNV_tutorial.unv
+#2- Conficuração das condições iniciais
+#> setFields
+#3- decomposição em subdomínios para rodar em paralelo
+#> decomposePar
+#4- Rodar a simulação
+#> mpirun -np 8 interFoam -parallel > saida &
+#5- reconstrução do domínio decomposto
+#> reconstructPar
+#6- Visualazação dos campos no paraview
+#> paraFoam
+#Obs: Para rodar com mais cores
+#> mpirun --oversubscribe -np 16 interFoam -parallel
+#=======================================================================
+Tutorial: Intake Channel Design with OpenFOAM and Salome - Part I
+
+By Hatari Labs
+https://youtu.be/abb9XpG519E
+
+# To run OpenFOAM after generate mesh with Salome (Mesh_1.unv)
+# 
+#1- Seguir os passos do vídeo
+# Obs: Além do erro que necessita trocar patch por wall no arquivo boundary, também tem que substituir no fvSolution pcorr para "pcorr.*"
+
+#=======================================================================
+Condição de contorno groovyBC:
+
+https://openfoamwiki.net/index.php/Contrib/swak4Foam
+
+https://openfoamwiki.net/index.php/Installation/swak4Foam/Installing_On/Ubuntu
+
+https://openfoamwiki.net/index.php/Contrib_groovyBC#Expression_syntax
+
+Tem que ler com atenção estes links para instalar. 
+
+forum: https://www.cfdsupport.com/openfoam-training.html
+
+#=======================================================================
+Start the Docker container with the second script:
+
+#./startOpenFOAM+
+#1- copy of tutorials:
+#mkdir -p $FOAM_RUN
+#cp -r $FOAM_TUTORIALS $FOAM_RUN
