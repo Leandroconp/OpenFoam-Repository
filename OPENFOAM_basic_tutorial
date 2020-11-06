@@ -87,8 +87,7 @@ Chapter 2: Describes some exemples to run openFoam
 #> interFoam | tee log 
 #5 - Paraview Post processing
 #> paraFoam - builtin
-#OBS: No paraview 5.4.1 se der erro na visualização alterar o "Label Size" para "64-bit" antes de aplicar.
-# 
+#OBS: No paraview 5.4.1 se der erro na visualização alterar o "Label Size" para "64-bit" antes de aplicar (correção: alterar o "writeFormat=ascii" no controldict)
 #Para transformar em 3D:
 #
 #1 - Editar arquivo blockMeshDict
