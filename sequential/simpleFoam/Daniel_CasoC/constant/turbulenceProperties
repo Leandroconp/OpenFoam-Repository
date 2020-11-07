@@ -20,12 +20,12 @@ simulationType RAS;
 RAS
 {
     // Tested with kEpsilon, realizableKE, kOmega, kOmegaSST,
-    // ShihQuadraticKE, LienCubicKE.
+    // ShihQuadraticKE, LienCubicKE, LaunderSharmaKE.
     RASModel        LaunderSharmaKE;
 
-    turbulence      off;
+    turbulence      on;
 
-    printCoeffs     off;
+    printCoeffs     on;
 }
 
 
