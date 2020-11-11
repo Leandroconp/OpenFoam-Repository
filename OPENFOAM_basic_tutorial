@@ -227,6 +227,11 @@ https://youtu.be/abb9XpG519E
 # Obs: Além do erro que necessita trocar patch por wall no arquivo boundary, também tem que substituir no fvSolution pcorr para "pcorr.*"
 
 #=======================================================================
+# yPlus: Command to run postprocessing for y+ calculation
+# > simpleFoam -postProcess -func yPlus > saida &
+https://www.openfoam.com/documentation/guides/latest/doc/guide-fos-field-yPlus.html
+
+#=======================================================================
 Condição de contorno groovyBC:
 
 https://openfoamwiki.net/index.php/Contrib/swak4Foam
