@@ -8,14 +8,32 @@
 FoamFile
 {
     version     2.0;
-    format      ascii;
-    class       dictionary;
-    location    "constant";
-    object      turbulenceProperties;
+    format      binary;
+    class       volScalarField;
+    location    "0";
+    object      T;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-simulationType  laminar;
+dimensions      [0 0 0 1 0 0 0];
+
+internalField   uniform 300;
+
+boundaryField
+{
+    pipewall
+    {
+        type            zeroGradient;
+    }
+    atmosphere
+    {
+        type            inletOutletTotalTemperature;
+        psi             thermo:psi;
+        gamma           1.4;
+        T0              uniform 300;
+        value           uniform 300;
+    }
+}
 
 
 // ************************************************************************* //

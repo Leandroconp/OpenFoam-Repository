@@ -86,7 +86,7 @@ solvers
         nSweeps         1;
     }
 
-    "(T|k|B|nuTilda).*"
+    "(T|k|epsilon|B|nuTilda).*"
     {
         solver          PBiCGStab;
         preconditioner  DILU;

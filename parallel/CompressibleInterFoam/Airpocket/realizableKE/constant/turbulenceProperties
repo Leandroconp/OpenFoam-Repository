@@ -11,43 +11,21 @@ FoamFile
     format      ascii;
     class       dictionary;
     location    "constant";
-    object      thermophysicalProperties;
+    object      turbulenceProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-thermoType
-{
-    type            heRhoThermo;
-    mixture         pureMixture;
-    transport       const;
-    thermo          eConst;
-    equationOfState perfectFluid;
-    specie          specie;
-    energy          sensibleInternalEnergy;
-}
+simulationType RAS;
 
-mixture
+RAS
 {
-    specie
-    {
-        molWeight   18.0;
-    }
-    equationOfState
-    {
-        R           3000;
-        rho0        1027;
-    }
-    thermodynamics
-    {
-        Cv          4195;
-        Hf          0;
-    }
-    transport
-    {
-        mu          3.645e-4;
-        Pr          2.289;
-    }
-}
+    // Tested with kEpsilon, realizableKE, kOmega, kOmegaSST,
+    // ShihQuadraticKE, LienCubicKE, LaunderSharmaKE.
+    RASModel        realizableKE;
 
+    turbulence      on;
+
+    printCoeffs     on;
+}
 
 // ************************************************************************* //

@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  7
+    \\  /    A nd           | Version:  6
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -10,30 +10,31 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volScalarField;
-    object      T;
+    location    "0";
+    object      alphat;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 0 0 1 0 0 0];
+dimensions      [1 -1 -1 0 0 0 0];
 
-internalField   uniform 300;
+internalField   uniform 0;
 
 boundaryField
 {
     pipewall
     {
-        type            zeroGradient;
+        type            compressible::alphatWallFunction;
+        Prt             0.85;
+        value           $internalField;
     }
 
     atmosphere
     {
-        type            zeroGradient;
+        type            calculated;
+        value           $internalField;
     }
 
-    defaultFaces
-    {
-        type            empty;
-    }
 }
+
 
 // ************************************************************************* //
