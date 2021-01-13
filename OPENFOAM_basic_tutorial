@@ -251,3 +251,11 @@ Start the Docker container with the second script:
 #1- copy of tutorials:
 #mkdir -p $FOAM_RUN
 #cp -r $FOAM_TUTORIALS $FOAM_RUN
+
+#========================================================================
+
+Tips and tricks in OpenFOAM
+
+Before running a simulation always check the mesh and reduce mesh bandwidth: 
+> checkMesh
+> renumberMesh
