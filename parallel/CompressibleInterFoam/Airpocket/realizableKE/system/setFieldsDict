@@ -25,21 +25,9 @@ defaultFieldValues
 
 regions
 (
-    //sphereToCell
-    //{
-    //    centre (0.5 0.5 0.5);
-    //    radius 0.1;
-    //    fieldValues
-    //    (
-    //        volScalarFieldValue alpha.water 0
-    //        volScalarFieldValue p_rgh 1e5
-    //        volScalarFieldValue p 1e5
-    //        volScalarFieldValue T 578
-    //    );
-    //}
     boxToCell
     {
-        box (-10 1.7 -1) (10 10 1);
+        box (1.5 4 0) (12 6 0.5);
         fieldValues
         (
             volScalarFieldValue alpha.water 0
@@ -47,7 +35,7 @@ regions
     }
     boxToCell
     {
-        box (1.7 0 -1) (10 10 1);
+        box (-2 -1 4.7) (2 6 12);
         fieldValues
         (
             volScalarFieldValue alpha.water 0

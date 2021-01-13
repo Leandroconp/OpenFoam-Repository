@@ -21,10 +21,6 @@ internalField   uniform 300;
 
 boundaryField
 {
-    pipewall
-    {
-        type            zeroGradient;
-    }
     atmosphere
     {
         type            inletOutletTotalTemperature;
@@ -32,6 +28,10 @@ boundaryField
         gamma           1.4;
         T0              uniform 300;
         value           uniform 300;
+    }
+    pipewall
+    {
+        type            zeroGradient;
     }
 }
 

@@ -21,7 +21,7 @@ thermoType
     mixture         pureMixture;
     transport       const;
     thermo          eConst;
-    equationOfState perfectFluid; // testar rhoConst
+    equationOfState perfectFluid; // rhoConst;
     specie          specie;
     energy          sensibleInternalEnergy;
 }
@@ -34,9 +34,12 @@ mixture
     }
     equationOfState
     {
-        R           3000;
-        rho0        1027;
+        R           3000; 
+        rho0        1027; 
     }
+//    {
+//	rho         1027;
+//   }
     thermodynamics
     {
         Cv          4195;

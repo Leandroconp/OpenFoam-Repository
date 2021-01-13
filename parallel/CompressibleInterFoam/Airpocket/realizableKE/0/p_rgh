@@ -21,13 +21,13 @@ internalField   uniform 100000;
 
 boundaryField
 {
-    pipewall
+    atmosphere
     {
         type            fixedFluxPressure;
         gradient        uniform 0;
         value           uniform 100000;
     }
-    atmosphere
+    pipewall
     {
         type            fixedFluxPressure;
         gradient        uniform 0;

@@ -86,11 +86,19 @@ solvers
         nSweeps         1;
     }
 
-    "(T|k|epsilon|B|nuTilda).*"
+    "(k|epsilon|B|nuTilda).*"
     {
         solver          PBiCGStab;
         preconditioner  DILU;
         tolerance       1e-06;
+        relTol          0;
+    }
+    
+    "(T).*"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-04;
         relTol          0;
     }
 }
@@ -103,6 +111,13 @@ PIMPLE
     nCorrectors     2;
     nNonOrthogonalCorrectors 0;
 }
+//PISO
+//{
+//    nCorrectors     2;
+//    nNonOrthogonalCorrectors 0;
+//    pRefCell        0;
+//    pRefValue       0;
+//}
 
 
 // ************************************************************************* //

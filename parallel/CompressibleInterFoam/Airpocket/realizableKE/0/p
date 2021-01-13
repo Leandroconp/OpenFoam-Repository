@@ -21,11 +21,6 @@ internalField   uniform 100000;
 
 boundaryField
 {
-    pipewall
-    {
-        type            calculated;
-        value           uniform 100000;
-    }
     atmosphere
     {
         type            totalPressure;
@@ -33,6 +28,11 @@ boundaryField
         psi             none;
         gamma           1;
         p0              uniform 100000;
+        value           uniform 100000;
+    }
+    pipewall
+    {
+        type            calculated;
         value           uniform 100000;
     }
 }
