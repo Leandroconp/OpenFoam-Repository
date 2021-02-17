@@ -203,7 +203,7 @@ link: https://www.youtube.com/watch?v=1zQbU-E4k1U
 #To run OpenFOAM after generate mesh with Salome (UNV_tutorial.unv)
 #1- Na pasta da simulação converter o unv para o formato OpenFOAM
 #> ideasUnvToFoam UNV_tutorial.unv
-#2- Conficuração das condições iniciais
+#2- Configuração das condições iniciais
 #> setFields
 #3- decomposição em subdomínios para rodar em paralelo
 #> decomposePar
