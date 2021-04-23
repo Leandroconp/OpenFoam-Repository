@@ -259,3 +259,5 @@ Tips and tricks in OpenFOAM
 Before running a simulation always check the mesh and reduce mesh bandwidth: 
 > checkMesh
 > renumberMesh
+> checkMesh -allGeometry -allTopology
+

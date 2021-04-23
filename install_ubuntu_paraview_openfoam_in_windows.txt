@@ -1,0 +1,15 @@
+Instalar Ubuntu no windows
+
+1 -  https://answers.microsoft.com/pt-br/windows/forum/windows_10-start-win_general/iniciar-o-powershell-no-windows-10-pelas-teclas-de/2482445c-6266-4876-bc7a-d8e19e563cf3#:~:text=Basta%20digitar%20PowerShell%20na%20caixa,e%20selecione%20Executar%20como%20administrador
+2 -  executar no powershell:  dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+3 -  reiniciar o pc
+4 - Instalar o Ubuntu pela loja Microsoft store
+
+Instalar paraview
+
+1 - https://www.paraview.org/download/
+2 - Baixar o exe e instalar
+
+Instalar openfoam
+
+1 - https://www.openfoam.com/download/openfoam-installation-on-windows-10
